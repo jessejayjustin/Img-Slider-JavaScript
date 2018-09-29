@@ -1,1 +1,3 @@
-# Image_slideshow_javaScript
+# Image slideshow javaScript
+
+# DEMO https://codepen.io/anon/pen/WabXLe
