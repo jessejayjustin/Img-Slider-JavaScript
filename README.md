@@ -1,3 +1,3 @@
 # Image Slider javaScript
 
-# DEMO https://codepen.io/anon/pen/WabXLe
+# Demo https://codepen.io/anon/pen/WabXLe
