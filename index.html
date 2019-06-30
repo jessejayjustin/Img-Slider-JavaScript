@@ -2,17 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Image Slider JavaScript</title>
+<title>Carousel JavaScript</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 	<div id="slide">
 		<div class="slides-container" style="text-align:center">
-			<div class="imgSlides fadeOut"> <img src="images/pine_forest.jpg"> </div>
-			<div class="imgSlides fadeOut"> <img src="images/best-forest.jpg"> </div>
-			<div class="imgSlides fadeOut"> <img src="images/EarthBeauty221.jpg"> </div>
-			<div class="imgSlides fadeOut"> <img src="images/setwalls.ru-79192.jpg"> </div>
+			<div class="slides fadeOut"> <img src="images/pine_forest.jpg"> </div>
+			<div class="slides fadeOut"> <img src="images/best-forest.jpg"> </div>
+			<div class="slides fadeOut"> <img src="images/EarthBeauty221.jpg"> </div>
+			<div class="slides fadeOut"> <img src="images/setwalls.ru-79192.jpg"> </div>
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> 
 			<a class="next" onclick="plusSlides(1)">&#10095;</a> 
         </div>
@@ -25,28 +25,33 @@
     </div>
 
     <script type="text/javascript">
-     var slideIndex = 0;
-     loop();
-     var slides,dots;
 
-     function loop() {
-        slides = document.getElementsByClassName("imgSlides");
+    var slideIndex = 0;
+    loop();
+    var slides,dots;
+
+    function removeSubsequentClass(element, cls) {
+       return element.className = element.className.replace(" " + cls, "");
+    }
+    
+    function loop() {
+        slides = document.getElementsByClassName("slides");
         dots = document.getElementsByClassName("dot");
         for (var i = 0; i < slides.length; i++) {
            slides[i].style.display = "none";  
-       }
+        }
        slideIndex++;
        var len = dots.length;
        if (slideIndex> slides.length) {slideIndex = 1}    
         for (var i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-            dots[(i+len-1)%len].className =  dots[(i+len-1)%len].className.replace(" active", "");
-            dots[(i+len-1)%len].className =  dots[(i+len-1)%len].className.replace(" active", "");
-            dots[(i+len-3)%len].className =  dots[(i+len-3)%len].className.replace(" active", "")
+            dots[i].className =  dots[i].className.replace(" active", "");
+            for (let n = 1; n <= 3; ++n) {
+                removeSubsequentClass(dots[(i+len-n)%len], "active");
+            }          
         }
         slides[slideIndex-1].style.display = "block";  
         dots[slideIndex-1].className += " active";
-        setTimeout(loop, 8000); // Change image every 8 seconds
+        setTimeout(loop, 6000); // Change image every 6 seconds
     }
 
     function plusSlides(position) {
@@ -56,33 +61,34 @@
             else if(slideIndex<1){slideIndex = slides.length}
                 for (i = 0; i < slides.length; i++) {
                    slides[i].style.display = "none"; 
-               }
-               for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-                dots[(i+len-1)%len].className =  dots[(i+len-1)%len].className.replace(" active", "");
-                dots[(i+len-2)%len].className =  dots[(i+len-2)%len].className.replace(" active", "")
-                dots[(i+len-3)%len].className =  dots[(i+len-3)%len].className.replace(" active", "")
+                }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className =  dots[i].className.replace(" active", "");
+                 dots[i].className =  dots[i].className.replace(" active", "");
+                for (let n = 1; n <= 3; ++n) {
+                    removeSubsequentClass(dots[(i+len-n)%len], "active");
+                }      
                 slides[slideIndex-1].style.display = "block";  
                 dots[slideIndex-1].className += " active";
             }
-        }
+    }
 
-        function dotSlide(index) {
-            if (index> slides.length) {index = 1}
-                else if(index<1){index = slides.length}
-                    for (i = 0; i < slides.length; i++) {
-                       slides[i].style.display = "none";  
-                   }
-                   var len = dots.length;
-                   for (i = 0; i < dots.length; i++) {
-                     dots[i].className = dots[i].className.replace(" active", "");
-                     dots[(i+len-1)%len].className =  dots[(i+len-1)%len].className.replace(" active", "");
-                     dots[(i+len-2)%len].className =  dots[(i+len-2)%len].className.replace(" active", "")
-                     dots[(i+len-3)%len].className =  dots[(i+len-3)%len].className.replace(" active", "")
-                     slides[index-1].style.display = "block";  
-                     dots[index-1].className += " active";
-                 }
-             }
+    function dotSlide(index) {
+        if (index > slides.length) {index = 1}
+            else if(index<1){index = slides.length}
+                for (i = 0; i < slides.length; i++) {
+                   slides[i].style.display = "none";  
+                }
+               var len = dots.length;
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className =  dots[i].className.replace(" active", "");
+                for (let n = 1; n <= 3; ++n) {
+                    removeSubsequentClass(dots[(i+len-n)%len], "active");
+                }      
+                slides[index-1].style.display = "block";  
+                dots[index-1].className += " active";
+            }
+    }
        </script>
 </body>
 </html>
