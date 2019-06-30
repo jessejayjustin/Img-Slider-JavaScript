@@ -1,3 +1,3 @@
-# Carousel JavaScript
+# Carousel with JavaScript
 
-# Demo: https://codepen.io/anon/pen/WabXLe
+# Demo: https://codepen.io/anon/pen/bPLLqB
