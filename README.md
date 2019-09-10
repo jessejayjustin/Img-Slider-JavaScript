@@ -1,6 +1,8 @@
+```
 Carousel JavaScript
+```
 
-# Demo: https://codepen.io/anon/pen/bPLLqB
+Demo: https://codepen.io/anon/pen/bPLLqB
 
 
 ## License
